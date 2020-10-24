@@ -1,6 +1,7 @@
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
+const figlet  = require("figlet");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -13,13 +14,46 @@ const { inherits } = require("util");
 
 let employees = [];
 
-init();
+figlet('CADRE', function(err, data) {
+    if (err) {
+        console.log('Something went wrong...');
+        console.dir(err);
+        return;
+    }
+    console.log(data)
+});
+
+setTimeout( function () {
+    init();
+}, 1000);
 
 function init() {
-    inquirer
-        .prompt([
-            
-        ])
+
+        console.log(
+`
+******************************
+*     Welcome to Cadre!      *
+******************************
+
+This is a simple command-line based team creator.
+You will be prompted to provide data for all of your team memebers;
+Ther are three types to chose from:
+        - Manager
+        - Engineer
+        - Intern
+
+Let's get started!
+
+`);
+
+    // inquirer
+    //     .prompt([
+    //         {
+    //             type: "message"
+
+
+    //     ])
+    newManager();
 }
 
 
