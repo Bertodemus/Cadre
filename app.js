@@ -27,6 +27,7 @@ setTimeout( function () {
     init();
 }, 1000);
 
+
 function init() {
 
         console.log(
@@ -41,33 +42,30 @@ Ther are three types to chose from:
         - Manager
         - Engineer
         - Intern
-
 Let's get started!
 
-`);
-
-    // inquirer
-    //     .prompt([
-    //         {
-    //             type: "message"
-
-
-    //     ])
+`
+);
     newManager();
 }
 
 
-function newManager() { 
+function newManager() {
+
+    console.log(
+`Manager setup:`
+    );
+
     inquirer
         .prompt([
             {
                 type: "input",
-                message: "Let's put your team together! Who will be your manager?",
+                message: "Who will be your manager?",
                 name: "name"
             },
             {
                 type: "input",
-                message: "What will be their ID number?",
+                message: "What is their ID number?",
                 name: "id"
             },
             {
@@ -85,8 +83,129 @@ function newManager() {
             const newMgr = new Manager(response.name, response.id, response.email, response.officeNumber);
             employees.push(newMgr);
             console.log(employees);
+            engineerLoop();
         });
+
 }
+
+function engineerLoop() {
+    inquirer
+        .prompt([
+            {
+                type: "confirm",
+                message: "Would you like to set up an engineer?",
+                name: "needEng"
+            }
+        ])
+        .then(function(response) {
+            if (response.needEng === true) {
+                console.log(
+                    `Engineer setup:`
+                        );
+                            
+                inquirer
+                    .prompt([
+                        {
+                            type: "input",
+                            message: "What is this engineer's name?",
+                            name: "name"
+                        },
+                        {
+                            type: "input",
+                            message: "What is their ID number?",
+                            name: "id"
+                        },
+                        {
+                            type: "input",
+                            message: "What is their E-mail address?",
+                            name: "email"
+                        },
+                        {
+                            type: "input",
+                            message: "What is their GitHub username?",
+                            name: "github"
+                        }
+                    ])
+                    .then(function(response) {
+                        const newEng = new Engineer(response.name, response.id, response.email, response.github);
+                        employees.push(newEng);
+                        console.log(employees);
+                        engineerLoop();
+                    });
+            } else {
+                internLoop();
+            }
+                
+        });
+    
+
+}
+
+
+
+function internLoop() {
+    inquirer
+        .prompt([
+            {
+                type: "confirm",
+                message: "Would you like to set up an intern?",
+                name: "needInt"
+            }
+        ])
+        .then(function(response) {
+            if (response.needInt === true) {
+                console.log(
+                    `Intern setup:`
+                        );
+                            
+                inquirer
+                    .prompt([
+                        {
+                            type: "input",
+                            message: "What is this intern's name?",
+                            name: "name"
+                        },
+                        {
+                            type: "input",
+                            message: "What is their ID number?",
+                            name: "id"
+                        },
+                        {
+                            type: "input",
+                            message: "What is their E-mail address?",
+                            name: "email"
+                        },
+                        {
+                            type: "input",
+                            message: "What school did they go to?",
+                            name: "school"
+                        }
+                    ])
+                    .then(function(response) {
+                        const newInt = new Intern(response.name, response.id, response.email, response.school);
+                        employees.push(newInt);
+                        console.log(employees);
+                        internLoop();
+                    });
+            } else {
+
+                fs.writeFile(outputPath, render(employees), function(err) {
+
+                    if (err) {
+                      return console.log(err);
+                    }
+                  
+                    console.log("Success!");
+                  
+                  });
+
+            }
+                
+        });
+    
+
+}
+
 
 
 
