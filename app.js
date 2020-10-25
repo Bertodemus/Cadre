@@ -35,18 +35,23 @@ function init() {
 ******************************
 *     Welcome to Cadre!      *
 ******************************
-
 This is a simple command-line based team creator.
-You will be prompted to provide data for all of your team memebers;
+You will be prompted to provide data for all of your team memebers.
+Once you have completed building your team, CADRE will create an HTML file
+that displays a nicely formatted team roster based on the information you provided.
+
 Ther are three types to chose from:
         - Manager
         - Engineer
         - Intern
+
 Let's get started!
 
 `
 );
-    newManager();
+    setTimeout( function () {
+        newManager();
+    }, 1500);
 }
 
 
@@ -195,7 +200,22 @@ function internLoop() {
                       return console.log(err);
                     }
                   
-                    console.log("Success!");
+                    console.log(
+`
+
+HTML file successfully created! The file will be stored in the 'output' folder. 
+
+Thank you for using CADRE!
+`
+);
+                    figlet('CADRE', function(err, data) {
+                        if (err) {
+                            console.log('Something went wrong...');
+                            console.dir(err);
+                            return;
+                        }
+                        console.log(data)
+                    });
                   
                   });
 
