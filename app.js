@@ -40,7 +40,7 @@ You will be prompted to provide data for all of your team memebers.
 Once you have completed building your team, CADRE will create an HTML file
 that displays a nicely formatted team roster based on the information you provided.
 
-Ther are three types to chose from:
+There are three types to chose from:
         - Manager
         - Engineer
         - Intern
