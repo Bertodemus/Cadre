@@ -66,7 +66,7 @@ Example of a completed HTML file
 
 This link will allow to you download a small video file, which is a live demo of the application.
 
-[Cadre Live Demo](https://github.com/Bertodemus/Forge)
+[Cadre Live Demo](https://github.com/Bertodemus/Cadre/raw/main/readme/video/Cadre.mp4)
 
 
 ## Questions
